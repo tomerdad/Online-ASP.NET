@@ -13,7 +13,7 @@
     <nav class="ToolBar noselect">
         <ul>
             <li><a href="./index.aspx">בית</a></li>
-            <li><a href="./grades.html">ציונים</a></li>
+            <li><a href="./Courses">קורסים</a></li>
             <% if (Session["UserID"] == null) { %>
             <li style="float: left;"><a href="./login.aspx">התחבר</a></li>
             <li style="float: left;"><a href="./register.aspx">הרשם</a></li>

@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/style.css?ver=1" />
     <title>Home | OnlineLesson</title>
 </head>
 <body dir="rtl">
@@ -27,21 +27,33 @@
 
 
 
-    <form runat="server">
-        <asp:GridView ID="CoursersList" AutoGenerateColumns="false" runat="server" width="100%" class="CoursesList">
+    <form runat="server" class="Container">
+        <!--SideBar-->
+        <div class="sidebar">
+            <h2>מסנן</h2>
+            <h3>רמה</h3>
+            <asp:CheckBoxList runat="server">
+                 <asp:ListItem>מתחיל</asp:ListItem>
+                 <asp:ListItem>מתקדם</asp:ListItem>
+                 <asp:ListItem>מומחה</asp:ListItem>
+            </asp:CheckBoxList>
+            <h3>קטגוריה</h3>
+            <asp:CheckBoxList runat="server">
+                 <asp:ListItem>אתרים</asp:ListItem>
+                 <asp:ListItem>אבטחה</asp:ListItem>
+                 <asp:ListItem>תכנות</asp:ListItem>
+            </asp:CheckBoxList>
+        </div>
+
+        <!--The content-->
+        <asp:GridView ID="CoursersList" AutoGenerateColumns="false" runat="server" class="CoursesList">
             <Columns>
-                <asp:TemplateField HeaderText="שם הקורס" ItemStyle-Width="30%">
+                <asp:TemplateField HeaderText="תיאור" ItemStyle-Width="70%" ItemStyle-CssClass="CourseListDescription">
                     <ItemTemplate>
-                        <center>
-                        <%# Eval("CourseName") %><br />
-                        <img src='<%# "style/images/Courses/"+Eval("CourseID")+".png" %>' width="170px" />
-                        </center>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="תיאור" ItemStyle-Width="70%">
-                    <ItemTemplate>
+                        <img src='<%# "style/images/Courses/"+Eval("CourseID")+".png" %>' width="150px" style="float: right; padding-left: 20px;" />
+                        <h2><%# Eval("CourseName") %></h2>
                         <p style="padding: 10px;"><%# Eval("Description") %></p>
-                        <asp:HyperLink runat="server" style="float:left" href='<%# "?CourseId="+Eval("CourseID") %>'>הרשם עכשיו</asp:HyperLink>
+                        <asp:HyperLink runat="server" class="CourseLink" href='<%# "./CoursePage/"+Eval("CourseID") %>'>לדף הקורס</asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

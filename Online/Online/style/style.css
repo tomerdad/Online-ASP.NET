@@ -118,7 +118,7 @@
     width: 100%;
 }
 
-/* Index pages */
+/* Index page */
 
 .indexImage {
     width: 100%;
@@ -133,7 +133,58 @@
     padding-top: 200px;
 }
 
+/* Courses page */
+
+/*.Container {
+    position: relative;
+    margin: 50px;
+}
+
+.sidebar {
+    float: right;
+    width: 200px;
+}
 
 .CoursesList {
+    max-width: 1200px;
+    width: calc(100% - 200px);
+    float: right;
+}*/
 
+.Container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1410px;
+    margin: 50px auto;
+
+}
+
+.sidebar {
+    min-width: 200px;
+    width: 200px;
+}
+
+.CoursesList {
+    margin-right: 10px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.CoursesList .CourseListDescription {
+    padding: 10px;
+    position: relative;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.CoursesList .CourseLink {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    /*float: left;*/
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 10px;
 }
