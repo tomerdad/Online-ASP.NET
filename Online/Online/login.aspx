@@ -25,7 +25,7 @@
         <form id="loginForm" runat="server">
             <h1>התחבר</h1>
             <asp:TextBox runat="server" id="email" placeholder="אימייל" />
-            <asp:TextBox runat="server" id="password" placeholder="סיסמא" />
+            <asp:TextBox runat="server" id="password" TextMode="Password" placeholder="סיסמא" />
             <asp:Button runat="server" id="submit" Text="התחבר" OnClick="btnLogin_Click" />
             <div>
             אין לך חשבון? <a href="./signup.aspx">צור עכשיו בחינם</a>

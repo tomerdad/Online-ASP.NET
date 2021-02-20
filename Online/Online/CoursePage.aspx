@@ -9,7 +9,16 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1><%= Request.QueryString["id"] %></h1>
+            <h1><%=  ""%></h1>
+            <asp:Label runat="server" ID="Lable1"></asp:Label>
+
+
+
+
+
+
+
+
         </div>
     </form>
 </body>
