@@ -64,62 +64,55 @@
 
 </head>
 <body dir="rtl">
-    <nav class="ToolBar noselect">
-        <ul>
-            <li><a href="./index.aspx">בית</a></li>
-            <li><a href="./grades.html">ציונים</a></li>
-            <% if (Session["UserID"] == null) { %>
-            <li style="float: left;"><a href="./login.aspx">התחבר</a></li>
-            <li style="float: left;"><a href="./register.aspx">הרשם</a></li>
-            <% } else { %>
-            <li style="float: left;"><a href="./account.aspx">החשבון שלי</a></li>
-            <% } %>
+    <form runat="server" id="pageForm">
+        <nav class="ToolBar noselect">
+            <ul>
+                <li><a href="/index">בית</a></li>
+                <li><a href="/Courses">קורסים</a></li>
+                <% if (Session["UserID"] == null) { %>
+                <li style="float: left;"><a href="/login">התחבר</a></li>
+                <li style="float: left;"><a href="/register">הרשם</a></li>
+                <% } else { %>
+                <script language="C#" type="text/C#" runat="server">
+                    protected void logoutClick(object sender, EventArgs e) {
+	                    Session.RemoveAll();
+                    }
+                </script>
 
-        </ul>
+                <li style="float: left;"><a href="/account">החשבון שלי</a></li>
+                <li style="float: left;"><asp:LinkButton id="logoutbtn" runat="server" onclick="logoutClick">התנתק</asp:LinkButton></li>
+                <% } %>
 
-    </nav>
+            </ul>
+        </nav>
 
 
 
-    <form runat="server" class="Container">
-        <!--SideBar-->
-        <div class="sidebar">
-            <h2>מסנן</h2>
-            <h3>רמה</h3>
-            <asp:CheckBoxList runat="server" ID="Skill" AutoPostBack="True" OnSelectedIndexChanged="FiltersCheckBoxListChange">
-                 <asp:ListItem runat="server" name="Skill_Beginer" Value="Beginer">מתחיל</asp:ListItem>
-                 <asp:ListItem runat="server" name="Skill_Expert" Value="Expert">מתקדם</asp:ListItem>
-                 <asp:ListItem runat="server" name="Skill_Professional" Value="Professional">מומחה</asp:ListItem>
-            </asp:CheckBoxList>
-            <h3>קטגוריה</h3>
-            <asp:CheckBoxList runat="server" ID="Category" AutoPostBack="true" OnSelectedIndexChanged="FiltersCheckBoxListChange" onchange="FiltersCheckBoxListChange()">
-                 <asp:ListItem runat="server" name="Category_Websites" Value="Websites" >אתרים</asp:ListItem>
-                 <asp:ListItem runat="server" name="Category_Securtiy" Value="Securtiy">אבטחה</asp:ListItem>
-                 <asp:ListItem runat="server" name="Category_Development" Value="Development">תכנות</asp:ListItem>
-            </asp:CheckBoxList>
-        </div>
+        <div runat="server" class="CourseContainer">
 
-        <!--The content-->
-        <div style="width: 100%;">
-        <asp:GridView ID="CoursersList" AutoGenerateColumns="false" runat="server" class="CoursesList">
-            <Columns>
-                <asp:TemplateField HeaderText="תיאור" ItemStyle-Width="70%" ItemStyle-CssClass="CourseListDescription">
-                    <ItemTemplate>
-                        <img src='<%# "style/images/Courses/"+Eval("CourseID")+".png" %>' width="150px" style="float: right; padding-left: 20px;" />
-                        <div style="display:flex; flex-direction:column;">
-                        <h2><%# Eval("CourseName") %></h2>
-                        <p style="padding: 10px; width: 100%;"><%# Eval("Description") %></p>
-                        <p>רמה: <%# Eval("Skill") %></p>
-                        <p>קטגוריה: <%# Eval("Category") %></p>
-                        <asp:HyperLink runat="server" class="CourseLink" href='<%# "./CoursePage/"+Eval("CourseID") %>'>לדף הקורס</asp:HyperLink>
-                        </div>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-        </asp:GridView>
+
+            <!--The content-->
+            <div style="width: 100%;">
+            <asp:GridView ID="CoursersList" AutoGenerateColumns="false" runat="server" class="CoursesList">
+                <Columns>
+                    <asp:TemplateField HeaderText="תיאור" ItemStyle-Width="100%" ItemStyle-CssClass="CourseListDescription"> 
+                        <ItemTemplate>
+                            <!--ItemStyle-Width="70%"-->
+                            <img src='<%# "style/images/Courses/"+Eval("CourseID")+".png" %>' width="150px" height="150px" style="float: right; padding-left: 20px;" />
+                            <div style="display:flex; flex-direction:column;">
+                            <h2><%# Eval("CourseName") %></h2>
+                            <p style="padding: 10px; width: 100%;"><%# Eval("Description") %></p>
+                            <p>רמה: <%# Eval("Skill") %></p>
+                            <p>קטגוריה: <%# Eval("Category") %></p>
+                            <asp:HyperLink runat="server" class="CourseLink" href='<%# "./CoursePage/"+Eval("CourseID") %>'>לדף הקורס</asp:HyperLink>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            </div>
         </div>
     </form>
-
 
 
 </body>

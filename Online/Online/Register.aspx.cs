@@ -35,8 +35,6 @@ public partial class Register : System.Web.UI.Page
 
 
             //הכנסת לטבלת משתמשים עם שם משתמש לא תפוס
-            //string stAddUser = "insert into tblUsers(fName,lName,address,cityName,gender,phoneNumber,email,user_Name,pass) values ('" + txtFname.Text + "','" + txtLname.Text + "','" + txtAdress.Text + "','" + ddlCity.SelectedItem.Value + "','" + ddlGender.SelectedItem.Value + "','"+txtPhone.Text+"','"+txtMail.Text+"','"+txtUser.Text+"','"+txtPass.Text+"') ";
-            //string stAddUser = "INSERT INTO Users (FirstName,LastName,Email,Password,Gender) VALUES ('" + fName.Value + "', 'dadashov', 'tomerdad@gmail.com', '123', 'male' ) ";
             string stAddUser = "INSERT INTO Users(FirstName,LastName,Email,[Password],Gender) VALUES ('" + fName.Value + "', '" + lName.Value + "', '" + email.Value + "', '" + password.Value + "', '" + Gender + "' );";
             sqlUser.udi(stAddUser);
 

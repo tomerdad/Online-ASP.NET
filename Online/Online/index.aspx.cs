@@ -11,10 +11,4 @@ public partial class index : System.Web.UI.Page
     {
 
     }
-
-    protected void logout_click(object sender, EventArgs e)
-    {
-        Session.RemoveAll();
-        Response.Redirect("./register.aspx");
-    }
 }

@@ -13,7 +13,7 @@ public partial class Courses : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Filters.Reset();
+        /*Filters.Reset();
 
         //check for filters and change url.
         if (Request["skill"] != null)
@@ -33,22 +33,22 @@ public partial class Courses : System.Web.UI.Page
         foreach (char item in Filters.GetFilters("Skill"))
         {
 
-        }
+        }*/
         
 
 
         //get data from db
-        SqlDb sqlUser = new SqlDb();
+        //SqlDb sqlUser = new SqlDb();
         DataSet dsUser = new DataSet();
-        string stUser = "SELECT * FROM Courses;";
-        dsUser = sqlUser.chkData(stUser);
-
+        //string stUser = "SELECT * FROM Courses;";
+        //dsUser = sqlUser.chkData(stUser);
+        dsUser = Filters.apply();
 
         CoursersList.DataSource = dsUser;
         CoursersList.DataBind();
     }
 
-    protected void FiltersCheckBoxListChange(object sender, EventArgs e)
+    /*protected void FiltersCheckBoxListChange(object sender, EventArgs e)
     {
         string url = Request.Url.ToString();
         CheckBoxList List = (CheckBoxList)sender;
@@ -89,6 +89,11 @@ public partial class Courses : System.Web.UI.Page
 
         Context.RewritePath("~/Courses?"+ va + string.Join(",", query));
         ScriptManager.RegisterStartupScript(this, this.GetType(), "updateUrl", "history.pushState(null, '', '"+Request.Url.PathAndQuery+"');", true);
+    }*/
+
+    protected void ReloadFilter(object sender, EventArgs e)
+    {
+
     }
 
 }
@@ -184,3 +189,24 @@ class Filters
     }
 
 }
+/*
+  side bar underworking
+        <!--SideBar--> 
+            <!--<div class="sidebar">
+                <asp:TextBox runat="server" ID="SearchText" OnTextChanged="ReloadFilter"></asp:TextBox>
+
+                <h2>מסנן</h2>
+                <h3>רמה</h3>
+                <asp:CheckBoxList runat="server" ID="Skill" AutoPostBack="True" OnSelectedIndexChanged="FiltersCheckBoxListChange">
+                     <asp:ListItem runat="server" name="Skill_Beginer" Value="Beginer">מתחיל</asp:ListItem>
+                     <asp:ListItem runat="server" name="Skill_Expert" Value="Expert">מתקדם</asp:ListItem>
+                     <asp:ListItem runat="server" name="Skill_Professional" Value="Professional">מומחה</asp:ListItem>
+                </asp:CheckBoxList>
+                <h3>קטגוריה</h3>
+                <asp:CheckBoxList runat="server" ID="Category" AutoPostBack="true" OnSelectedIndexChanged="FiltersCheckBoxListChange" onchange="FiltersCheckBoxListChange()">
+                     <asp:ListItem runat="server" name="Category_Websites" Value="Websites" >אתרים</asp:ListItem>
+                     <asp:ListItem runat="server" name="Category_Securtiy" Value="Securtiy">אבטחה</asp:ListItem>
+                     <asp:ListItem runat="server" name="Category_Development" Value="Development">תכנות</asp:ListItem>
+                </asp:CheckBoxList>
+            </div>-->
+*/

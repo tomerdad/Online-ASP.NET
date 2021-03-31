@@ -13,6 +13,14 @@ public partial class account : System.Web.UI.Page
     {
         if (Session["UserID"] == null)
             Response.Redirect("index.aspx");
+
+        DataSet dsUser = new DataSet();
+        SqlDb sqlUser = new SqlDb();
+        string stUser = "SELECT * FROM Courses WHERE UserOwnerID = (" + Session["UserID"] + ");";
+        dsUser = sqlUser.chkData(stUser);
+
+        CoursersList.DataSource = dsUser;
+        CoursersList.DataBind();
     }
 
     protected void replace_password(object sender, EventArgs e)

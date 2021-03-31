@@ -10,23 +10,27 @@
     <title>Home | OnlineLesson</title>
 </head>
 <body dir="rtl">
-    <nav class="ToolBar noselect">
+    <form runat="server" id="header" class="ToolBar noselect">
         <ul>
-            <li><a href="./index.aspx">בית</a></li>
-            <li><a href="./Courses">קורסים</a></li>
+            <li><a href="/index">בית</a></li>
+            <li><a href="/Courses">קורסים</a></li>
             <% if (Session["UserID"] == null) { %>
-            <li style="float: left;"><a href="./login.aspx">התחבר</a></li>
-            <li style="float: left;"><a href="./register.aspx">הרשם</a></li>
+            <li style="float: left;"><a href="/login">התחבר</a></li>
+            <li style="float: left;"><a href="/register">הרשם</a></li>
             <% } else { %>
-            <li style="float: left;"><a href="./account.aspx">החשבון שלי</a></li>
-            <!-- to check
-            <li style="float: left;"><a href="#" id="logoutbtn" runat="server" onServerClick="logout_click">התנתק</a></li>-->
+            <script language="C#" type="text/C#" runat="server">
+                protected void logoutClick(object sender, EventArgs e) {
+	                Session.RemoveAll();
+                }
+            </script>
 
+            <li style="float: left;"><a href="/account">החשבון שלי</a></li>
+            <li style="float: left;"><asp:LinkButton id="logoutbtn" runat="server" onclick="logoutClick">התנתק</asp:LinkButton></li>
             <% } %>
 
         </ul>
 
-    </nav>
+    </form>
     <div class="indexImage">
         <h1 style="text-align: center;">כל שנה היא התחלה חדשה<br>עם הצלחות חדשות</h1>
     </div>
